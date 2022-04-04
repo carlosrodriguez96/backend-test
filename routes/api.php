@@ -18,11 +18,11 @@ use App\Http\Middleware\APIToken;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// routes for autenthication 
 Route::post('/register', 'Auth\RegisterController@create');
 Route::get('/validateToken', 'Auth\VerificationController@validateToken');
 Route::post('/login', 'Auth\LoginController@authenticated');
-
+// routes protected middleware
 Route::middleware('APIToken')->group(function(){
     Route::post('/create-bill', 'BillController@store');
     Route::get('/getBills', 'BillController@index');
